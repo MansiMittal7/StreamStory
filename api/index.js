@@ -13,7 +13,7 @@ const Post = require('./models/Post');
 // require('dotenv').config;
 
 const salt = bcrypt.genSaltSync(10); // Store hash in your password DB.
-const secret = 'asdfe45we45w345wegw345werjktjwertkj';
+const secret = process.env.SECRET;
 app.use(cors({
   credentials:true,
   methods: ["POST", "GET", "PUT"], 
@@ -27,7 +27,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 //   .then(() => console.log('Connected to MongoDB'))
 //   .catch((err) => console.error('Failed to connect to MongoDB:', err));
 
-mongoose.connect('mongodb+srv://blog:mansi27m@user.9au1p.mongodb.net/streamStoryDB?retryWrites=true&w=majority&appName=user', {
+mongoose.connect(process.env.MONGODB_URL, {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
 })
